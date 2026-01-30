@@ -29,6 +29,8 @@ The system determines:
 - ASP.NET Core
 - C#
 - Entity Framework (planned)
+- SQLSERVER (stored procedure)
+- HTML ,CSS , BOOTSTRAP
 - Git & GitHub
 
 ---
