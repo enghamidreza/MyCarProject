@@ -1,0 +1,14 @@
+## Visual Studio
+.vs/
+*.user
+*.suo
+
+## Build results
+bin/
+obj/
+
+## ASP.NET Core
+appsettings.Development.json
+
+## Logs
+*.log

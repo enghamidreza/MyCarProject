@@ -1,0 +1,44 @@
+﻿<link rel="stylesheet" href="~/css/CreateDrivers.css" />
+
+@model CarProject2.Models.Driver
+@{
+    ViewData["Title"] = "Create Driver";
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+<h2>Create Driver</h2>
+
+<form asp-action="Create" method="post" >
+    @Html.AntiForgeryToken()  @* hamoon marboott be token amniati hastesh  *@
+  <div class="form-group"> @* // form-group ye class az bootstrapt hastesh ke miad faseleh bain input haroo adjust mikoneh *@
+    <label asp-for="FullName" id="fullnameDriver">FullName</label> <br />
+        <input asp-for="FullName" class="FullName-Input" type="text" /> @* // form-control ham bootstrap hastesh *@
+    <span asp-validation-for="FullName" class="text-danger"></span> @* // baraye fill kardan form haa(!modelstat.isvalid) *@
+    </div>
+    <div class="form-group">
+        <label asp-for="NationalCode" id="NationalIdDriver">NationalCode</label>
+        <input asp-for="NationalCode" class="NationalCode-Input" type="number" />
+        <span asp-validation-for="NationalCode" class="text-danger"></span> @* // baraye fill kardan form haa(!modelstat.isvalid) *@
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone" id="PhoneDriver">Phone</label>
+        <input asp-for="Phone" class="Phone-Input" type="number" />
+@*         <span asp-validation-for="Phone" class="text-danger"></span> @* // baraye fill kardan form haa(!modelstat.isvalid) *@
+   </div>
+   
+   <div class="form-group mt-3">
+    <button type="submit" class="btn btn-success" id="submit">Save ✔</button>
+    <button type="reset" class="btn btn-warning" id="reset">Cansel 🧹</button>
+    </div>
+    @* //jodakardam az save va cansel *@
+    <div class="form-group mt-3 text-left">
+        <a href="/Home/Index" class="btn btn-secondary">ReturnToHomePage ⬅</a>
+    </div>
+</form>

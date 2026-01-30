@@ -1,0 +1,99 @@
+﻿@model List<CarProject2.Models.Driver>//chon gharaeh list ro return koneh va editesh konim
+
+<link rel="stylesheet" href="~/css/EditeDrivers.css" />
+
+<h2>Edite Drivers</h2>
+
+<form asp-action="Edit" method="post">
+    <dive class="form-group">
+        <label id="SearchUser">Name</label>
+        <input type="text" name="driver" id="SearchDriver" placeholder="Name" class="Inpute-Edit" />
+        <button type="submit" class="btn btn-primary mt-2">Search Driver</button>
+    </dive>
+</form>
+<hr />
+
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert  alert-danger">@ViewBag.Error</div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"] </div>
+}
+
+@if (Model != null && Model.Any())   @* shart gozashtim ke agar searchi nazad hichi nayareh *@
+{
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>FullName</th>
+                <th>NationalCode</th>
+                <th>Phone</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          @*   @if (Model != null) *@ @* in baraye table khorooji bood  *@
+          //  {
+                @foreach (var test in Model)
+                {
+                    <tr>
+                        <form method="post" asp-action="EditFinallDriver">
+                            <td>
+                                <input value="@test.FullName" name="FullName" type="text" class="form-control" placeholder="FullName" />
+                            </td>
+                            <td>
+                                <input value="@test.NationalCode" name="NationalCode" type="number" class="form-control" />
+                            </td>
+                            <td> <input value="@test.Phone" name="Phone" type="number" class="form-control" /></td>
+                            <td class="text-center">
+                                <input value="@test.id" type="hidden" name="id" /> @* agar in ro nazaram id=0 return mikoneh be samt sp  *@
+                                <button type="submit" class="btn btn-success btn-sm">Update</button>
+
+                                <button type="submit" class="btn btn-danger btn-sm" formaction="DeleteFromClient" formmethod="post" onclick="
+                        return confirm ('Are You Sure you want to  Delete this Record ??');">
+                                    Delete
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+}
+
+@* <form id="EditForm" class="mt-4" style="display:none">
+    <input type="hidden" id="Id" />
+
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="FullName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>National Code</label>
+        <input type="number" id="NationalCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="number" id="Phone" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+ *@
+@* 
+@section scripts
+{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/SeachDrivers.js"></script>
+} 
+*@
